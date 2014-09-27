@@ -1,23 +1,23 @@
 import re
-from math import sin, cos, atan,  sqrt
+from math import sin, cos, atan, pi, sqrt
 
-pattern = """(-?[0-9]{1,3})°?[\s]*([0-9]{1,2})'?[\s]*([0-9]{1,2})"?"""
+pattern = """(-?[0-9]{1,3})Â°?[\s]*([0-9]{1,2})'?[\s]*([0-9]{1,2})"?"""
 
 def lecture_cordonnee(nom, type_entree):
-    m = None     #objet qui contient le résultat de la vérification d'expression régulière
-    while m == None:    #tant qu'on n'a pas d'entrée valide
-        coordonees = raw_input("Entrer la "+type_entree+" de "+nom+""" sous la forme DMS: <degré>° <minute>' <seconde>" \n""") 
-        #on vérifie si l'entree vérifie l'expression régulière
+    m = None     #objet qui contient le rÃ©sultat de la vÃ©rification d'expression rÃ©guliÃ¨re
+    while m == None:    #tant qu'on n'a pas d'entrÃ©e valide
+        coordonees = raw_input("Entrer la "+type_entree+" de "+nom+""" sous la forme DMS: <degrÃ©>Â° <minute>' <seconde>" \n""") 
+        #on vÃ©rifie si l'entree vÃ©rifie l'expression rÃ©guliÃ¨re
         m = re.search(pattern, coordonees)
-        if m != None:   #dans le cas où elle la vérifie
-            coord =  map(int, m.groups()) #on récupère les élements DMS: degré, minute, seconde sous forme de triplet
-            if verifier_coord(coord, type_entree):    #si les valeurs des entrées sont valides on quitte la boucle de lecture
+        if m != None:   #dans le cas oÃ¹ elle la vÃ©rifie
+            coord =  map(int, m.groups()) #on rÃ©cupÃ¨re les Ã©lements DMS: degrÃ©, minute, seconde sous forme de triplet
+            if verifier_coord(coord, type_entree):    #si les valeurs des entrÃ©es sont valides on quitte la boucle de lecture
             	break
-            else:     #si les valeurs DMS dépassent leur intervalle
-            	print "la synthaxe est bonne, mais les valeurs sont erronnées"
+            else:     #si les valeurs DMS dÃ©passent leur intervalle
+            	print "la synthaxe est bonne, mais les valeurs sont erronnÃ©es"
             	m = None
         else:
-            print "La synthaxe n'a pas été respectée"
+            print "La synthaxe n'a pas Ã©tÃ© respectÃ©e"
     return coord
 
 def verifier_coord(coord, type_entree):
